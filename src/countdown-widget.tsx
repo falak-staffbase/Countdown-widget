@@ -78,7 +78,9 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
     color: 'black',
     borderRadius:"3px", 
     fontSize: "16px",
-    border:boxescolorborder,
+    border:"1px",
+    borderStyle:"dotted",
+    borderBlockColor:boxescolorborder,
     display: "inline-block"
   };
 
@@ -96,7 +98,7 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
     ) :
     <div>
       <div style = {countdowncustomize}>
-        <span style={textcustomize}>{days} Days</span><span style={textcustomize}> {hours} Hours</span><span style={textcustomize}>{minutes} Minutes</span><span style={textcustomize}> {hours} hours</span>  
+        <span style={textcustomize}>&nbsp;{days}&nbsp;Days</span><span style={textcustomize}>&nbsp;{hours}&nbsp;Hours</span><span style={textcustomize}>&nbsp;{minutes}&nbsp;Minutes</span><span style={textcustomize}>&nbsp;{hours}&nbsp;hours</span>  
       </div>      
     </div>
    }
