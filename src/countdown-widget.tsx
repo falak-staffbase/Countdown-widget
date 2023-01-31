@@ -51,7 +51,7 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
     setInterval(()=>{countdown(),1000})
   }
   )
-  
+
   const [timeDiff,days,hours,minutes,seconds] = countdown();
 
 
@@ -68,7 +68,6 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
     textSizeAdjust :boxescolortext,
     backgroundColor: boxescolorbg,
     color: 'black',
-    border:boxescolorborder, 
     fontSize: "22.4px",
     paddingTop : "5px",
   };
@@ -79,6 +78,7 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
     color: 'black',
     borderRadius:"3px", 
     fontSize: "16px",
+    border:boxescolorborder,
     display: "inline-block"
   };
 
@@ -96,21 +96,8 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
     ) :
     <div>
       <div style = {countdowncustomize}>
-        <div>{days}</div>
-        <span style={textcustomize}>Days</span>
-      </div>  
-      <div style = {countdowncustomize}>
-        <div>{hours}</div>
-        <span style={textcustomize}>Hours</span>
-      </div>
-      <div style = {countdowncustomize}>
-        <div>{minutes}</div>
-        <span style={textcustomize}>Minutes</span>
-      </div>
-      <div style = {countdowncustomize}>
-        <div>{seconds}</div>
-        <span style={textcustomize}>Seconds</span>
-      </div>     
+        <span style={textcustomize}>{days} Days</span><span style={textcustomize}> {hours} Hours</span><span style={textcustomize}>{minutes} Minutes</span><span style={textcustomize}> {hours} hours</span>  
+      </div>      
     </div>
    }
    
