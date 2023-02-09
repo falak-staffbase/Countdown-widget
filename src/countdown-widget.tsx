@@ -58,7 +58,7 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
 
   // Execute timer once on mount
   useEffect(() => {        
-      setInterval(timeCountdown, 1000);    
+    setTimeout(timeCountdown, 2000);    
   });
 
   const titlecustomize: CSS.Properties = {
