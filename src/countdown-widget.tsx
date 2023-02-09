@@ -12,10 +12,9 @@
  */
 
 import { count } from "console";
-import React, { ReactElement } from "react";
+import React, { ReactElement,useState, useEffect } from "react";
 import { BlockAttributes } from "widget-sdk";
 import CSS from "csstype";
-import * as ReactDOM from 'react-dom';
 
 /**
  * React Component
@@ -32,28 +31,26 @@ export interface CountdownWidgetProps extends BlockAttributes {
 }
 
 export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, boxescolorborder, boxescolortext, countdowndate, expiredmessage  }: CountdownWidgetProps): ReactElement => {
-  
-  const targetDate = new Date(countdowndate);
 
-  function countdown() {
-    const currentDate = new Date();
-    const timeDiff = Number(targetDate) - Number(currentDate);
+  let days, hours, minutes, seconds;
+  let distance = 0;
   
-    const seconds = Math.floor((timeDiff / 1000) % 60);
-    const minutes = Math.floor((timeDiff / 1000 / 60) % 60);
-    const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const targetDate = new Date(countdowndate).getTime();
   
-    return [timeDiff,days,hours,minutes,seconds];
+  function timeCountdown() {
+    const now = new Date().getTime();
+    distance = targetDate - now;
+  
+    days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    setTimeout(timeCountdown, 1000);
   }
-  
-  React.useEffect(()=>{
-    setInterval(()=>{countdown(),1000})
-  }
-  )
 
-  const [timeDiff,days,hours,minutes,seconds] = countdown();
-
+  console.log()
 
   const titlecustomize: CSS.Properties = {
     // textAlign: "center",
@@ -92,8 +89,7 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
     ) :
     <div> </div>
    }
-      { 
-    timeDiff < 0? (
+      { distance < 0? (
       <div>{expiredmessage}</div>
     ) :
     <div>
@@ -105,4 +101,3 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
    
     </div>;
 };
-
