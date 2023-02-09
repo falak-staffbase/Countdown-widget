@@ -32,25 +32,34 @@ export interface CountdownWidgetProps extends BlockAttributes {
 
 export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, boxescolorborder, boxescolortext, countdowndate, expiredmessage  }: CountdownWidgetProps): ReactElement => {
 
-  let days, hours, minutes, seconds;
-  let distance = 0;
-  
+  // Setup date values
   const targetDate = new Date(countdowndate).getTime();
+
+  // Setup state variables
+  const [distance, setDistance] = useState<number>(0);
+  const [days, setDays] = useState<number>(0);
+  const [hours, setHours] = useState<number>(0);
+  const [minutes, setMinutes] = useState<number>(0);
+  const [seconds, setSeconds] = useState<number>(0);
   
-  function timeCountdown() {
-    const now = new Date().getTime();
-    distance = targetDate - now;
-  
-    days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    setTimeout(timeCountdown, 1000);
+  // Timer function to count down
+  const timeCountdown = () => {
+      const now = new Date().getTime();
+      setDistance(targetDate - now);
+
+      setDays(Math.floor(distance / (1000 * 60 * 60 * 24)));
+
+      setHours(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+
+      setMinutes(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+
+      setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }
 
-  console.log()
+  // Execute timer once on mount
+  useEffect(() => {        
+      setInterval(timeCountdown, 1000);    
+  });
 
   const titlecustomize: CSS.Properties = {
     // textAlign: "center",
