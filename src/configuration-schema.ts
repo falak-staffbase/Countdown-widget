@@ -19,25 +19,7 @@ import { JSONSchema7 } from "json-schema";
  * see https://react-jsonschema-form.readthedocs.io/en/latest/ for documentation
  */
 export const configurationSchema: JSONSchema7 = {
-  required: [
-    "title",
-    "countdowndate",
-    "expiredmessage"
-  ],
   properties: {  
-    title: {
-      type: "string",
-      title: "Title"
-    },
-    showtitle: {
-      type: "boolean",
-      title: "Show Title"
-    },
-    titlecolor: {
-      type: "string",
-      title: "Title Color",
-      default: "#333333"
-    },
     countdowndate: {
       type: "string",
       title: "Countdown Date + Time",
@@ -66,19 +48,6 @@ export const configurationSchema: JSONSchema7 = {
  * @see https://react-jsonschema-form.readthedocs.io/en/latest/api-reference/uiSchema/
  */
 export const uiSchema: UiSchema = {
-  title: {
-    "ui:autofocus": true,
-    "ui:emptyValue": "",
-    "ui:autocomplete": "off",
-    "ui:help": "Choose a title for the countdown."
-  },
-  showtitle: {
-    "ui:help": "Do you want to display the title?"
-  },
-  titlecolor: {
-    "ui:widget": "color",
-    "ui:help": "Choose a color for the title of the countdown. Default: #333333"
-  },
   countdowndate: {
     "ui:help": "Choose a date and time for the countdown."
   },

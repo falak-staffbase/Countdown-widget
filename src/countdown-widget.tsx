@@ -19,9 +19,6 @@ import apiMock from '../dev/widget-api-mock/index';
  * React Component
  */
 export interface CountdownWidgetProps extends BlockAttributes {
-  title: string;
-  showtitle: boolean;
-  titlecolor: string;
   countdowndate: string;
   expiredmessage: string;
   boxescolorbg: string;
@@ -30,7 +27,7 @@ export interface CountdownWidgetProps extends BlockAttributes {
 }
 
 
-export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, boxescolorborder, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
+export const CountdownWidget = ({ boxescolorbg, boxescolorborder, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
   // Setup date values
   const targetDate = new Date(countdowndate).getTime();
   // Setup state variables
@@ -55,69 +52,62 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
       setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }
 
-  useEffect(() => {        
+  useEffect(() => {      
     timeCountdown();
+    setTheme(apiMock.getLegacyAppTheme());
 });
-
-useEffect(() => {        
-  setTheme(apiMock.getLegacyAppTheme());  
-});
-
-
-const titlecustomize: CSS.Properties = {
-  // textAlign: "center",
-  color: titlecolor,
-  border:boxescolorborder, 
-  fontSize: "22.4px",
-};
 
 const textcustomize: CSS.Properties = {
   // textAlign: "center",
   paddingTop : "5px",
   color: boxescolortext,
   fontSize: "16px",
-  display: "inline-block"
+  display: "inline-block",
+  borderColor: boxescolorborder
+
+};
+
+const numbercustomize: CSS.Properties = {
+  // textAlign: "center",
+  color: boxescolortext,
+  borderColor: boxescolorborder
 };
 
 
   return <div>
-   { 
-    showtitle ? (
-    <div><span style= {titlecustomize}>{title} </span> </div>
-    ) :
-    <div> </div>
-   }
-   {
-    
-   }
-      { distance < 0? (
-      <div>{expiredmessage}</div>
-    ) :
-    <div>
-      <div style={{ color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px" }}>
-        
-        <div style={textcustomize}>
-        <div>{days}</div>
-        <span>Days</span>
+    { distance < 0? (
+      <div>{expiredmessage}</div>) 
+      :
+    <div style={{backgroundColor: theme?.bgColor}}>
+
+        <div>
+        <br />
+        <div style={numbercustomize}>{days}</div>
+        <span style={textcustomize}>Days</span>
+        <br />
         </div>
 
-        <div style={textcustomize}>
-        <div>{hours}</div>
-        <span >Hours</span>
-        <div/>
-
-        <div style={textcustomize} >
-        <div>{minutes}</div>
-        <span>Minutes</span>
+        <div>
+        <br />
+        <div style={numbercustomize}>{hours}</div>
+        <span style={textcustomize}>Hours</span>
+        <br />
         </div>
 
-        <div style={textcustomize}>
-        <div>{seconds}</div>
-        <span>Seconds</span> 
+        <div>
+        <br />
+        <div style={numbercustomize}>{minutes}</div>
+        <span style={textcustomize}>Minutes</span>
+        <br />
         </div>
 
+        <div>
+        <br />
+        <div style={numbercustomize}>{seconds}</div>
+        <span style={textcustomize}>Seconds</span> 
+        <br />
         </div>
-      </div>      
+
     </div>
    }
    
