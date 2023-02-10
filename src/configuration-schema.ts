@@ -40,6 +40,11 @@ export const configurationSchema: JSONSchema7 = {
       title: "Text Color",
       default: "#FFFFFF"
     },
+    boxescolorbg: {
+      type: "string",
+      title: "Background Color",
+      default: "#FBC91E"
+    },
   },
 };
 

@@ -36,7 +36,7 @@ export const CountdownWidget = ({ boxescolorbg, boxescolorborder, boxescolortext
   const [hours, setHours] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
-  const [theme, setTheme] = React.useState<ColorTheme>();
+  const [theme, setTheme] =useState(boxescolorbg);
 
   // Timer function to count down
   const timeCountdown = () => {
@@ -51,10 +51,9 @@ export const CountdownWidget = ({ boxescolorbg, boxescolorborder, boxescolortext
 
       setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }
-
+  Promise.resolve(apiMock.getLegacyAppTheme()).then(result => setTheme(boxescolorbg));
   useEffect(() => {      
     timeCountdown();
-    setTheme(apiMock.getLegacyAppTheme());
 });
 
 const textcustomize: CSS.Properties = {
@@ -63,14 +62,16 @@ const textcustomize: CSS.Properties = {
   color: boxescolortext,
   fontSize: "16px",
   display: "inline-block",
-  borderColor: boxescolorborder
+  borderColor: boxescolorborder,
+  backgroundColor:theme
 
 };
 
 const numbercustomize: CSS.Properties = {
   // textAlign: "center",
   color: boxescolortext,
-  borderColor: boxescolorborder
+  borderColor: boxescolorborder,
+  backgroundColor:theme
 };
 
 
@@ -78,7 +79,7 @@ const numbercustomize: CSS.Properties = {
     { distance < 0? (
       <div>{expiredmessage}</div>) 
       :
-    <div style={{backgroundColor: theme?.bgColor}}>
+    <div >
 
         <div>
         <br />
