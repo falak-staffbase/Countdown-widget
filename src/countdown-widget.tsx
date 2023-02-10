@@ -19,17 +19,18 @@ import apiMock from '../dev/widget-api-mock/index';
  * React Component
  */
 export interface CountdownWidgetProps extends BlockAttributes {
-
+  title: string;
   showtitle: boolean;
   titlecolor: string;
   countdowndate: string;
   expiredmessage: string;
+  boxescolorbg: string;
   boxescolortext: string;
   boxescolorborder: string;
 }
 
 
-export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorborder, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
+export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, boxescolorborder, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
   // Setup date values
   const targetDate = new Date(countdowndate).getTime();
   // Setup state variables
@@ -38,7 +39,7 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorborder,
   const [hours, setHours] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
-  const [theme, setTheme] = React.useState<ColorTheme | null>(null);
+  const [theme, setTheme] = React.useState<ColorTheme>();
 
   // Timer function to count down
   const timeCountdown = () => {
@@ -55,24 +56,28 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorborder,
   }
 
   useEffect(() => {        
-    setTheme(apiMock.getLegacyAppTheme());  
     timeCountdown();
 });
 
-  const titlecustomize: CSS.Properties = {
-    // textAlign: "center",
-    color: titlecolor,
-    border:boxescolorborder, 
-    fontSize: "22.4px",
-  };
+useEffect(() => {        
+  setTheme(apiMock.getLegacyAppTheme());  
+});
 
-  const textcustomize: CSS.Properties = {
-    // textAlign: "center",
-    paddingTop : "5px",
-    color: boxescolortext,
-    fontSize: "16px",
-    display: "inline-block"
-  };
+
+const titlecustomize: CSS.Properties = {
+  // textAlign: "center",
+  color: titlecolor,
+  border:boxescolorborder, 
+  fontSize: "22.4px",
+};
+
+const textcustomize: CSS.Properties = {
+  // textAlign: "center",
+  paddingTop : "5px",
+  color: boxescolortext,
+  fontSize: "16px",
+  display: "inline-block"
+};
 
 
   return <div>
