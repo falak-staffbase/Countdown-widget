@@ -48,11 +48,6 @@ export const configurationSchema: JSONSchema7 = {
       title: "Expired Message",
       default: "Countdown is done."
     },
-    boxescolorbg: {
-      type: "string",
-      title: "Background Color",
-      default: "#FBC91E"
-    },
     boxescolorborder: {
       type: "string",
       title: "Border Color",

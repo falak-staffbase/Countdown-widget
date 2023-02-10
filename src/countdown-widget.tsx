@@ -11,37 +11,35 @@
  * limitations under the License.
  */
 
-import { count } from "console";
 import React, { ReactElement,useState, useEffect } from "react";
-import { BlockAttributes } from "widget-sdk";
+import { BlockAttributes, ColorTheme } from "widget-sdk";
 import CSS from "csstype";
-
+import apiMock from '../dev/widget-api-mock/index';
 /**
  * React Component
  */
 export interface CountdownWidgetProps extends BlockAttributes {
-  title: string;
+
   showtitle: boolean;
   titlecolor: string;
   countdowndate: string;
   expiredmessage: string;
-  boxescolorbg: string;
   boxescolortext: string;
   boxescolorborder: string;
 }
 
-export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, boxescolorborder, boxescolortext, countdowndate, expiredmessage  }: CountdownWidgetProps): ReactElement => {
 
+export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorborder, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
   // Setup date values
   const targetDate = new Date(countdowndate).getTime();
-
   // Setup state variables
   const [distance, setDistance] = useState<number>(0);
   const [days, setDays] = useState<number>(0);
   const [hours, setHours] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
-  
+  const [theme, setTheme] = React.useState<ColorTheme | null>(null);
+
   // Timer function to count down
   const timeCountdown = () => {
       const now = new Date().getTime();
@@ -56,37 +54,23 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
       setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }
 
-  // Execute timer once on mount
   useEffect(() => {        
-    setTimeout(timeCountdown, 2000);    
-  });
+    setTheme(apiMock.getLegacyAppTheme());  
+    timeCountdown();
+});
 
   const titlecustomize: CSS.Properties = {
     // textAlign: "center",
-    textSizeAdjust :boxescolortext,
     color: titlecolor,
     border:boxescolorborder, 
     fontSize: "22.4px",
   };
 
-  const countdowncustomize: CSS.Properties = {
-    // textAlign: "center",
-    textSizeAdjust :boxescolortext,
-    backgroundColor: boxescolorbg,
-    color: 'black',
-    fontSize: "22.4px",
-    paddingTop : "5px",
-  };
-
   const textcustomize: CSS.Properties = {
     // textAlign: "center",
     paddingTop : "5px",
-    color: 'black',
-    borderRadius:"3px", 
+    color: boxescolortext,
     fontSize: "16px",
-    border:"1px",
-    borderStyle:"dotted",
-    borderBlockColor:boxescolorborder,
     display: "inline-block"
   };
 
@@ -98,12 +82,36 @@ export const CountdownWidget = ({title, showtitle, titlecolor, boxescolorbg, box
     ) :
     <div> </div>
    }
+   {
+    
+   }
       { distance < 0? (
       <div>{expiredmessage}</div>
     ) :
     <div>
-      <div style = {countdowncustomize}>
-        <span style={textcustomize}>&nbsp;{days}&nbsp;Days&nbsp;</span><span style={textcustomize}>&nbsp;{hours}&nbsp;Hours&nbsp;</span><span style={textcustomize}>&nbsp;{minutes}&nbsp;Minutes&nbsp;</span><span style={textcustomize}>&nbsp;{seconds}&nbsp;Seconds&nbsp;</span>  
+      <div style={{ color: theme?.colors.text, backgroundColor: theme?.bgColor, padding: "10px" }}>
+        
+        <div style={textcustomize}>
+        <div>{days}</div>
+        <span>Days</span>
+        </div>
+
+        <div style={textcustomize}>
+        <div>{hours}</div>
+        <span >Hours</span>
+        <div/>
+
+        <div style={textcustomize} >
+        <div>{minutes}</div>
+        <span>Minutes</span>
+        </div>
+
+        <div style={textcustomize}>
+        <div>{seconds}</div>
+        <span>Seconds</span> 
+        </div>
+
+        </div>
       </div>      
     </div>
    }
