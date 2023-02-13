@@ -70,6 +70,7 @@ const numbercustomize: CSS.Properties = {
   // textAlign: "center",
   color: boxescolortext,
   borderColor: boxescolorborder,
+  display: "inline-block",
 };
 
 
@@ -77,33 +78,33 @@ const numbercustomize: CSS.Properties = {
     { distance < 0? (
       <div>{expiredmessage}</div>) 
       :
-    <div style={{backgroundColor: theme?.bgColor}}>
+    <div style={{backgroundColor: theme?.bgColor,display: "inline-block"}}>
 
         <div>
         <br />
         <div style={numbercustomize}>{days}</div>
-        <span style={textcustomize}>Days</span>
+        <span style={textcustomize}>&nbsp;&nbsp;Day</span>
         <br />
         </div>
 
         <div>
         <br />
         <div style={numbercustomize}>{hours}</div>
-        <span style={textcustomize}>Hours</span>
+        <span style={textcustomize}>&nbsp;&nbsp;Hour</span>
         <br />
         </div>
 
         <div>
         <br />
         <div style={numbercustomize}>{minutes}</div>
-        <span style={textcustomize}>Minutes</span>
+        <span style={textcustomize}>&nbsp;&nbsp;Minute</span>
         <br />
         </div>
 
         <div>
         <br />
         <div style={numbercustomize}>{seconds}</div>
-        <span style={textcustomize}>Seconds</span> 
+        <span style={textcustomize}>&nbsp;&nbsp;Second</span> 
         <br />
         </div>
 
