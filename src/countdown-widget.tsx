@@ -11,22 +11,22 @@
  * limitations under the License.
  */
 
-import React, {  FunctionComponent, ReactElement,useState, useEffect } from "react";
-import { BlockAttributes, ColorTheme,WidgetApi } from "widget-sdk";
+import React, { ReactElement,useState, useEffect } from "react";
+import { ColorTheme,WidgetApi } from "widget-sdk";
 import CSS from "csstype";
-import apiMock from '../dev/widget-api-mock/index';
 /**
  * React Component
  */
-export interface CountdownWidgetProps extends BlockAttributes {
+export interface CountdownWidgetProps {
   countdowndate: string;
   expiredmessage: string;
   boxescolortext: string;
   boxescolorborder: string;
+  widgetApi: WidgetApi;
 }
 
 
-export const CountdownWidget = ({boxescolorborder, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
+export const CountdownWidget = ({boxescolorborder,widgetApi, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
   // Setup date values
   const targetDate = new Date(countdowndate).getTime();
   // Setup state variables
@@ -36,7 +36,7 @@ export const CountdownWidget = ({boxescolorborder, boxescolortext, countdowndate
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [theme, setTheme] = React.useState<ColorTheme | null>(null);
-
+  
   // Timer function to count down
   const timeCountdown = () => {
       const now = new Date().getTime();
@@ -51,9 +51,10 @@ export const CountdownWidget = ({boxescolorborder, boxescolortext, countdowndate
       setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }
 
-  useEffect(() => {      
-    timeCountdown();
-    setTheme(apiMock.getLegacyAppTheme());
+useEffect(() => {      
+  timeCountdown()
+  setTheme(widgetApi.getLegacyAppTheme());
+  
 });
 
 const textcustomize: CSS.Properties = {

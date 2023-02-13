@@ -40,12 +40,11 @@ const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
       const attrs = this.parseAttributes<CountdownWidgetProps>();
       return {
         ...attrs,
-        contentLanguage: this.contentLanguage,
       };
     }
 
     public renderBlock(container: HTMLElement): void {
-      ReactDOM.render(<CountdownWidget {...this.props} />, container);
+      ReactDOM.render(<CountdownWidget {...this.props} widgetApi={_widgetApi}/>, container);
     }
 
     /**
