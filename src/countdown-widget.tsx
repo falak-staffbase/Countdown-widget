@@ -11,8 +11,8 @@
  * limitations under the License.
  */
 
-import React, { ReactElement,useState, useEffect } from "react";
-import { BlockAttributes, ColorTheme } from "widget-sdk";
+import React, {  FunctionComponent, ReactElement,useState, useEffect } from "react";
+import { BlockAttributes, ColorTheme,WidgetApi } from "widget-sdk";
 import CSS from "csstype";
 import apiMock from '../dev/widget-api-mock/index';
 /**
@@ -21,13 +21,12 @@ import apiMock from '../dev/widget-api-mock/index';
 export interface CountdownWidgetProps extends BlockAttributes {
   countdowndate: string;
   expiredmessage: string;
-  boxescolorbg: string;
   boxescolortext: string;
   boxescolorborder: string;
 }
 
 
-export const CountdownWidget = ({ boxescolorbg, boxescolorborder, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
+export const CountdownWidget = ({boxescolorborder, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
   // Setup date values
   const targetDate = new Date(countdowndate).getTime();
   // Setup state variables
@@ -36,7 +35,7 @@ export const CountdownWidget = ({ boxescolorbg, boxescolorborder, boxescolortext
   const [hours, setHours] = useState<number>(0);
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
-  const [theme, setTheme] =useState(boxescolorbg);
+  const [theme, setTheme] = React.useState<ColorTheme | null>(null);
 
   // Timer function to count down
   const timeCountdown = () => {
@@ -51,9 +50,10 @@ export const CountdownWidget = ({ boxescolorbg, boxescolorborder, boxescolortext
 
       setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }
-  Promise.resolve(apiMock.getLegacyAppTheme()).then(result => setTheme(boxescolorbg));
+
   useEffect(() => {      
     timeCountdown();
+    setTheme(apiMock.getLegacyAppTheme());
 });
 
 const textcustomize: CSS.Properties = {
@@ -63,7 +63,6 @@ const textcustomize: CSS.Properties = {
   fontSize: "16px",
   display: "inline-block",
   borderColor: boxescolorborder,
-  backgroundColor:theme
 
 };
 
@@ -71,7 +70,6 @@ const numbercustomize: CSS.Properties = {
   // textAlign: "center",
   color: boxescolortext,
   borderColor: boxescolorborder,
-  backgroundColor:theme
 };
 
 
@@ -79,7 +77,7 @@ const numbercustomize: CSS.Properties = {
     { distance < 0? (
       <div>{expiredmessage}</div>) 
       :
-    <div >
+    <div style={{backgroundColor: theme?.bgColor}}>
 
         <div>
         <br />

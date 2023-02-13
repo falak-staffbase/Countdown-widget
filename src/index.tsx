@@ -53,7 +53,7 @@ const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
      */
     public static get observedAttributes(): string[] {
       const defaults = ["content-language", "widget-title", "on-card"];
-      return [...defaults, "countdowndate", "expiredmessage", "boxescolorbg", "boxescolorborder", "boxescolortext"];
+      return [...defaults, "countdowndate", "expiredmessage", "boxescolorborder", "boxescolortext"];
     }
 
     /**
@@ -72,7 +72,7 @@ const factory: BlockFactory = (BaseBlockClass, _widgetApi) => {
 const blockDefinition: BlockDefinition = {
     name: "countdown-widget",
     factory: factory,
-    attributes: ['countdowndate','expiredmessage','boxescolorbg','boxescolortext','boxescolorborder'],
+    attributes: ['countdowndate','expiredmessage','boxescolortext','boxescolorborder'],
     blockLevel: 'block',
     configurationSchema: configurationSchema,
     uiSchema: uiSchema,
