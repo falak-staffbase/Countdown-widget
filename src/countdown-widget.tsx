@@ -22,11 +22,21 @@ export interface CountdownWidgetProps {
   expiredmessage: string;
   boxescolortext: string;
   boxescolorborder: string;
+  boxescolorbg : string;
+  showbackground: string;
+  dayword: string;
+  hourword: string;
+  minuteword: string;
+  secondword: string;
+  dayswordplural: string;
+  hourswordplural: string;
+  secondswordplural: string;
+  minuteswordplural: string;
   widgetApi: WidgetApi;
 }
 
 
-export const CountdownWidget = ({boxescolorborder,widgetApi, boxescolortext, countdowndate, expiredmessage }: CountdownWidgetProps): ReactElement => {
+export const CountdownWidget = ({dayword,hourword,minuteword,secondword,dayswordplural,hourswordplural,minuteswordplural,secondswordplural,boxescolorborder,widgetApi, boxescolortext, countdowndate, expiredmessage,boxescolorbg,showbackground }: CountdownWidgetProps): ReactElement => {
   // Setup date values
   const targetDate = new Date(countdowndate).getTime();
   // Setup state variables
@@ -72,40 +82,64 @@ const numbercustomize: CSS.Properties = {
   color: boxescolortext,
   borderColor: boxescolorborder,
   display: "inline-block",
+  whiteSpace:"nowrap",
 };
 
-
   return <div>
-    { distance < 0? (
+    {distance < 0? (
       <div>{expiredmessage}</div>) 
-      :
-    <div style={{backgroundColor: theme?.bgColor,display: "inline-block"}}>
+    :
+    <div style={showbackground ?{backgroundColor:boxescolorbg}:{backgroundColor: theme?.bgColor,display: "inline-block"}}>
 
         <div>
         <br />
         <div style={numbercustomize}>{days}</div>
-        <span style={textcustomize}>&nbsp;&nbsp;Day</span>
+        {days <1 ? (
+          <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{dayword}</span>
+
+        )
+        :
+        <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{dayswordplural}</span>
+        }
         <br />
         </div>
 
         <div>
         <br />
         <div style={numbercustomize}>{hours}</div>
-        <span style={textcustomize}>&nbsp;&nbsp;Hour</span>
+        {hours <1 ? (
+          <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{hourword}</span>
+
+        )
+        :
+        <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{hourswordplural}</span>
+        }
         <br />
         </div>
 
         <div>
         <br />
         <div style={numbercustomize}>{minutes}</div>
-        <span style={textcustomize}>&nbsp;&nbsp;Minute</span>
+        {minutes <1 ? (
+          <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{minuteword}</span>
+
+        )
+        :
+        <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{minuteswordplural}</span>
+        }
         <br />
         </div>
 
         <div>
         <br />
         <div style={numbercustomize}>{seconds}</div>
-        <span style={textcustomize}>&nbsp;&nbsp;Second</span> 
+        {seconds <1 ? (
+          <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{secondword}</span>
+
+        )
+        :
+        <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{secondswordplural}</span>
+        }
         <br />
         </div>
 

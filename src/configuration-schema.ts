@@ -19,7 +19,49 @@ import { JSONSchema7 } from "json-schema";
  * see https://react-jsonschema-form.readthedocs.io/en/latest/ for documentation
  */
 export const configurationSchema: JSONSchema7 = {
+  required: [
+    "dayword",
+    "hourword",
+    "minuteword",
+    "secondword",
+    "dayswordplural",
+    "hourswordplural",
+    "secondswordplural",
+    "minuteswordplural",
+  ],
   properties: {  
+    dayswordplural: {
+      type: "string",
+      title: "Days Word Plural"
+    },
+    hourswordplural: {
+      type: "string",
+      title: "Hours Word Plural"
+    },
+    minuteswordplural: {
+      type: "string",
+      title: "Minutes Word Plural"
+    },
+    secondswordplural: {
+      type: "string",
+      title: "Seconds Word Plural"
+    },
+    dayword: {
+      type: "string",
+      title: "Day Word"
+    },
+    hourword: {
+      type: "string",
+      title: "Hour Word"
+    },
+    minuteword: {
+      type: "string",
+      title: "Minute Word"
+    },
+    secondword: {
+      type: "string",
+      title: "Second Word"
+    },
     countdowndate: {
       type: "string",
       title: "Countdown Date + Time",
@@ -40,6 +82,15 @@ export const configurationSchema: JSONSchema7 = {
       title: "Text Color",
       default: "#FFFFFF"
     },
+    boxescolorbg: {
+      type: "string",
+      title: "Background Color",
+      default: "#FBC91E"
+    },
+    showbackground: {
+      type: "boolean",
+      title: "Show Background"
+    },
   },
 };
 
@@ -48,6 +99,30 @@ export const configurationSchema: JSONSchema7 = {
  * @see https://react-jsonschema-form.readthedocs.io/en/latest/api-reference/uiSchema/
  */
 export const uiSchema: UiSchema = {
+  dayswordplural: {
+    "ui:help": "Choose a word to display for number of day left in countdown."
+  },
+  hourswordplural: {
+    "ui:help": "Choose a word to display for number of hours left in countdown."
+  },
+  minuteswordplural: {
+    "ui:help": "Choose a word to display for number of minutes left in countdown."
+  },
+  secondswordplural: {
+    "ui:help": "Choose a word to display for number of seconds left in countdown."
+  },
+  dayword: {
+    "ui:help": "Choose a word to display if less that 1 day left in countdown."
+  },
+  hourword: {
+    "ui:help": "Choose a word to display if less that 1 hour left in countdown."
+  },
+  minuteword: {
+    "ui:help": "Choose a word to display if less that 1 minute left in countdown."
+  },
+  secondword: {
+    "ui:help": "Choose a word to display if less that 1 second left in countdown."
+  },
   countdowndate: {
     "ui:help": "Choose a date and time for the countdown."
   },
@@ -61,5 +136,12 @@ export const uiSchema: UiSchema = {
   boxescolortext: {
     "ui:widget": "color",
     "ui:help": "Choose a color for the text in the countdown boxes. Default: #FFFFFF"
+  },
+  boxescolorbg: {
+    "ui:widget": "color",
+    "ui:help": "Choose a color for the background of the countdown boxes. Default: #FBC91E"
+  },
+  showbackground: {
+    "ui:help": "Do you want to display the customized background color?"
   },
 };
