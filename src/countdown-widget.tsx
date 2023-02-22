@@ -74,7 +74,8 @@ const textcustomize: CSS.Properties = {
   fontSize: "16px",
   display: "inline-block",
   borderColor: boxescolorborder,
-
+  maxWidth:  "50px",
+  minWidth: "50px"
 };
 
 const numbercustomize: CSS.Properties = {
@@ -82,7 +83,8 @@ const numbercustomize: CSS.Properties = {
   color: boxescolortext,
   borderColor: boxescolorborder,
   display: "inline-block",
-  whiteSpace:"nowrap",
+  maxWidth:  "50px",
+  minWidth: "50px"
 };
 
   return <div>
