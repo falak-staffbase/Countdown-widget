@@ -21,7 +21,6 @@ export interface CountdownWidgetProps {
   countdowndate: string;
   expiredmessage: string;
   boxescolortext: string;
-  boxescolorborder: string;
   boxescolorbg : string;
   showbackground: string;
   dayword: string;
@@ -36,7 +35,7 @@ export interface CountdownWidgetProps {
 }
 
 
-export const CountdownWidget = ({dayword,hourword,minuteword,secondword,dayswordplural,hourswordplural,minuteswordplural,secondswordplural,boxescolorborder,widgetApi, boxescolortext, countdowndate, expiredmessage,boxescolorbg,showbackground }: CountdownWidgetProps): ReactElement => {
+export const CountdownWidget = ({dayword,hourword,minuteword,secondword,dayswordplural,hourswordplural,minuteswordplural,secondswordplural,widgetApi, boxescolortext, countdowndate, expiredmessage,boxescolorbg,showbackground }: CountdownWidgetProps): ReactElement => {
   // Setup date values
   const targetDate = new Date(countdowndate).getTime();
   // Setup state variables
@@ -73,18 +72,13 @@ const textcustomize: CSS.Properties = {
   color: boxescolortext,
   fontSize: "16px",
   display: "inline-block",
-  borderColor: boxescolorborder,
-  maxWidth:  "50px",
-  minWidth: "50px"
 };
 
 const numbercustomize: CSS.Properties = {
   // textAlign: "center",
   color: boxescolortext,
-  borderColor: boxescolorborder,
   display: "inline-block",
-  maxWidth:  "50px",
-  minWidth: "50px"
+  width:"70px"
 };
 
   return <div>

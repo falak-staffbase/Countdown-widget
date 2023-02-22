@@ -72,11 +72,6 @@ export const configurationSchema: JSONSchema7 = {
       title: "Expired Message",
       default: "Countdown is done."
     },
-    boxescolorborder: {
-      type: "string",
-      title: "Border Color",
-      default: "#FBC91E"
-    },
     boxescolortext: {
       type: "string",
       title: "Text Color",
@@ -128,10 +123,6 @@ export const uiSchema: UiSchema = {
   },
   expiredmessage: {
     "ui:help": "Enter an expired message for the countdown."
-  },
-  boxescolorborder: {
-    "ui:widget": "color",
-    "ui:help": "Choose a color for the border of the countdown boxes. Default: #FBC91E"
   },
   boxescolortext: {
     "ui:widget": "color",
