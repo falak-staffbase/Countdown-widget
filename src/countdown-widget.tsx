@@ -72,19 +72,28 @@ const textcustomize: CSS.Properties = {
   color: boxescolortext,
   fontSize: "16px",
   display: "inline-block",
+  paddingRight:"20px",
 };
 
 const numbercustomize: CSS.Properties = {
   // textAlign: "center",
+  paddingLeft:"15px",
   color: boxescolortext,
   display: "inline-block",
   width:"70px"
+};
+
+const parentcustomize: CSS.Properties = {
+  // textAlign: "center",s
+  paddingBottom:"20px",
+  display: "inline-block",
 };
 
   return <div>
     {distance < 0? (
       <div>{expiredmessage}</div>) 
     :
+    <div style={parentcustomize}>
     <div style={showbackground ?{backgroundColor:boxescolorbg}:{backgroundColor: theme?.bgColor,display: "inline-block"}}>
 
         <div>
@@ -138,7 +147,7 @@ const numbercustomize: CSS.Properties = {
         }
         <br />
         </div>
-
+        </div>
     </div>
    }
    
