@@ -150,6 +150,5 @@ const parentcustomize: CSS.Properties = {
         </div>
     </div>
    }
-   
     </div>;
 };

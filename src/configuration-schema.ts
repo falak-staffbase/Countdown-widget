@@ -18,6 +18,8 @@ import { JSONSchema7 } from "json-schema";
  * schema used for generation of the configuration dialog
  * see https://react-jsonschema-form.readthedocs.io/en/latest/ for documentation
  */
+
+const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
 export const configurationSchema: JSONSchema7 = {
   required: [
     "dayword",
@@ -31,58 +33,71 @@ export const configurationSchema: JSONSchema7 = {
   ],
   properties: {  
     dayswordplural: {
+      $id:id,
       type: "string",
       title: "Days Word Plural"
     },
     hourswordplural: {
+      $id:id,
       type: "string",
       title: "Hours Word Plural"
     },
     minuteswordplural: {
+      $id:id,
       type: "string",
       title: "Minutes Word Plural"
     },
     secondswordplural: {
+      $id:id,
       type: "string",
       title: "Seconds Word Plural"
     },
     dayword: {
+      $id:id,
       type: "string",
       title: "Day Word"
     },
     hourword: {
+      $id:id,
       type: "string",
       title: "Hour Word"
     },
     minuteword: {
+      $id:id,
       type: "string",
       title: "Minute Word"
     },
     secondword: {
+      $id:id,
       type: "string",
       title: "Second Word"
     },
     countdowndate: {
+      $id:id,
       type: "string",
       title: "Countdown Date + Time",
       format: "date-time"
     },
     expiredmessage: {
+      $id:id,
       type: "string",
       title: "Expired Message",
       default: "Countdown is done."
     },
     boxescolortext: {
+      $id:id,
       type: "string",
       title: "Text Color",
       default: "#FFFFFF"
     },
     boxescolorbg: {
+      $id:id,
       type: "string",
       title: "Background Color",
       default: "#FBC91E"
     },
     showbackground: {
+      $id:id,
       type: "boolean",
       title: "Show Background"
     },
