@@ -19,7 +19,7 @@ import { JSONSchema7 } from "json-schema";
  * see https://react-jsonschema-form.readthedocs.io/en/latest/ for documentation
  */
 
-const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
+
 export const configurationSchema: JSONSchema7 = {
   required: [
     "dayword",
@@ -33,71 +33,66 @@ export const configurationSchema: JSONSchema7 = {
   ],
   properties: {  
     dayswordplural: {
-      $id:id,
       type: "string",
-      title: "Days Word Plural"
+      title: "Days Word Plural",
+      default: "Days"
     },
     hourswordplural: {
-      $id:id,
       type: "string",
-      title: "Hours Word Plural"
+      title: "Hours Word Plural",
+      default: "Hours"
     },
     minuteswordplural: {
-      $id:id,
       type: "string",
-      title: "Minutes Word Plural"
+      title: "Minutes Word Plural",
+      default: "Minutes"
     },
     secondswordplural: {
-      $id:id,
       type: "string",
-      title: "Seconds Word Plural"
+      title: "Seconds Word Plural",
+      default: "Seconds"
     },
     dayword: {
-      $id:id,
       type: "string",
-      title: "Day Word"
+      title: "Day Word",
+      default: "Day"
     },
     hourword: {
-      $id:id,
       type: "string",
-      title: "Hour Word"
+      title: "Hour Word",
+      default: "Hour"
     },
     minuteword: {
-      $id:id,
       type: "string",
-      title: "Minute Word"
+      title: "Minute Word",
+      default: "Minute"
     },
     secondword: {
-      $id:id,
       type: "string",
-      title: "Second Word"
+      title: "Second Word",
+      default: "Second"
     },
     countdowndate: {
-      $id:id,
       type: "string",
       title: "Countdown Date + Time",
       format: "date-time"
     },
     expiredmessage: {
-      $id:id,
       type: "string",
       title: "Expired Message",
       default: "Countdown is done."
     },
     boxescolortext: {
-      $id:id,
       type: "string",
       title: "Text Color",
-      default: "#FFFFFF"
+      default: "#000000"
     },
     boxescolorbg: {
-      $id:id,
       type: "string",
       title: "Background Color",
-      default: "#FBC91E"
+      default: "#FFFFFF"
     },
     showbackground: {
-      $id:id,
       type: "boolean",
       title: "Show Background"
     },

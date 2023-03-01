@@ -99,7 +99,7 @@ const parentcustomize: CSS.Properties = {
         <div>
         <br />
         <div style={numbercustomize}>{days}</div>
-        {days <1 ? (
+        {days <= 1 ? (
           <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{dayword}</span>
 
         )
@@ -112,7 +112,7 @@ const parentcustomize: CSS.Properties = {
         <div>
         <br />
         <div style={numbercustomize}>{hours}</div>
-        {hours <1 ? (
+        {hours <= 1 ? (
           <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{hourword}</span>
 
         )
@@ -125,7 +125,7 @@ const parentcustomize: CSS.Properties = {
         <div>
         <br />
         <div style={numbercustomize}>{minutes}</div>
-        {minutes <1 ? (
+        {minutes <= 1 ? (
           <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{minuteword}</span>
 
         )
@@ -138,7 +138,7 @@ const parentcustomize: CSS.Properties = {
         <div>
         <br />
         <div style={numbercustomize}>{seconds}</div>
-        {seconds <1 ? (
+        {seconds <= 1 ? (
           <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{secondword}</span>
 
         )
