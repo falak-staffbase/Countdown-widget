@@ -11,8 +11,8 @@
  * limitations under the License.
  */
 
-import React, { ReactElement,useState, useEffect } from "react";
-import { ColorTheme,WidgetApi } from "widget-sdk";
+import React, { ReactElement, useState, useEffect } from "react";
+import { ColorTheme, WidgetApi } from "widget-sdk";
 import CSS from "csstype";
 /**
  * React Component
@@ -21,7 +21,7 @@ export interface CountdownWidgetProps {
   countdowndate: string;
   expiredmessage: string;
   boxescolortext: string;
-  boxescolorbg : string;
+  boxescolorbg: string;
   showbackground: string;
   dayword: string;
   hourword: string;
@@ -35,7 +35,7 @@ export interface CountdownWidgetProps {
 }
 
 
-export const CountdownWidget = ({dayword,hourword,minuteword,secondword,dayswordplural,hourswordplural,minuteswordplural,secondswordplural,widgetApi, boxescolortext, countdowndate, expiredmessage,boxescolorbg,showbackground }: CountdownWidgetProps): ReactElement => {
+export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, dayswordplural, hourswordplural, minuteswordplural, secondswordplural, widgetApi, boxescolortext, countdowndate, expiredmessage, boxescolorbg, showbackground }: CountdownWidgetProps): ReactElement => {
   // Setup date values
   const targetDate = new Date(countdowndate).getTime();
   // Setup state variables
@@ -45,110 +45,94 @@ export const CountdownWidget = ({dayword,hourword,minuteword,secondword,daysword
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [theme, setTheme] = React.useState<ColorTheme | null>(null);
-  
+
   // Timer function to count down
   const timeCountdown = () => {
-      const now = new Date().getTime();
-      setDistance(targetDate - now);
+    const now = new Date().getTime();
+    setDistance(targetDate - now);
 
-      setDays(Math.floor(distance / (1000 * 60 * 60 * 24)));
+    setDays(Math.floor(distance / (1000 * 60 * 60 * 24)));
 
-      setHours(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    setHours(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
 
-      setMinutes(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+    setMinutes(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
 
-      setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
+    setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }
 
-useEffect(() => {      
-  timeCountdown()
-  setTheme(widgetApi.getLegacyAppTheme());
-  
-});
+  useEffect(() => {
+    timeCountdown()
+    setTheme(widgetApi.getLegacyAppTheme());
 
-const textcustomize: CSS.Properties = {
-  // textAlign: "center",
-  paddingTop : "5px",
-  color: boxescolortext,
-  fontSize: "16px",
-  display: "inline-block",
-  paddingRight:"20px",
-};
+  });
 
-const numbercustomize: CSS.Properties = {
-  // textAlign: "center",
-  paddingLeft:"15px",
-  color: boxescolortext,
-  display: "inline-block",
-  width:"70px"
-};
+  const textcustomize: CSS.Properties = {
+    // textAlign: "center",
+    paddingTop: "5px",
+    color: boxescolortext,
+    fontSize: "16px",
+    display: "inline-block",
+    paddingRight: "20px",
+  };
 
-const parentcustomize: CSS.Properties = {
-  // textAlign: "center",s
-  paddingBottom:"20px",
-  display: "inline-block",
-};
+  const numbercustomize: CSS.Properties = {
+    // textAlign: "center",
+    paddingLeft: "15px",
+    color: boxescolortext,
+    display: "inline-block",
+    width: "70px"
+  };
 
-  return <div>
-    {distance < 0? (
-      <div>{expiredmessage}</div>) 
-    :
-    <div style={parentcustomize}>
-    <div style={showbackground ?{backgroundColor:boxescolorbg}:{backgroundColor: theme?.bgColor,display: "inline-block"}}>
+  const parentcustomize: CSS.Properties = {
+    // textAlign: "center",s
+    paddingBottom: "20px",
+    display: "inline-block",
+  };
 
-        <div>
-        <br />
-        <div style={numbercustomize}>{days}</div>
-        {days <= 1 ? (
-          <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{dayword}</span>
+  return <div className="cw-countdown-main">
+    {distance < 0 ? (
+      <div className="cw-countdown-expired">{expiredmessage}</div>)
+      :
+      <div style={parentcustomize}>
+        <div style={showbackground ? { backgroundColor: boxescolorbg } : { backgroundColor: theme?.bgColor, display: "inline-block" }}>
 
-        )
-        :
-        <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{dayswordplural}</span>
-        }
-        <br />
+          <div>
+            <br />
+            <div className="cw-countdown-number cw-countdown-days" style={numbercustomize}>{days}</div>
+            <span className="cw-countdown-number-text cw-countdown-days-text" style={textcustomize}>
+              {days <= 1 ? dayword : dayswordplural}
+            </span>
+            <br />
+          </div>
+
+          <div>
+            <br />
+            <div className="cw-countdown-number cw-countdown-hours" style={numbercustomize}>{hours}</div>
+            <span className="cw-countdown-number-text cw-countdown-hours-text" style={textcustomize}>
+              {hours <= 1 ? hourword : hourswordplural}
+            </span>
+            <br />
+          </div>
+
+          <div>
+            <br />
+            <div className="cw-countdown-number cw-countdown-minutes" style={numbercustomize}>{minutes}</div>
+            <span className="cw-countdown-number-text cw-countdown-minutes-text" style={textcustomize}>
+              {minutes <= 1 ? minuteword : minuteswordplural}
+            </span>
+            <br />
+          </div>
+
+          <div>
+            <br />
+            <div className="cw-countdown-number cw-countdown-seconds" style={numbercustomize}>{seconds}</div>
+            <span className="cw-countdown-number-text cw-countdown-seconds-text" style={textcustomize}>
+              {seconds <= 1 ? secondword : secondswordplural}
+            </span>
+            <br />
+          </div>
         </div>
-
-        <div>
-        <br />
-        <div style={numbercustomize}>{hours}</div>
-        {hours <= 1 ? (
-          <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{hourword}</span>
-
-        )
-        :
-        <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{hourswordplural}</span>
-        }
-        <br />
-        </div>
-
-        <div>
-        <br />
-        <div style={numbercustomize}>{minutes}</div>
-        {minutes <= 1 ? (
-          <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{minuteword}</span>
-
-        )
-        :
-        <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{minuteswordplural}</span>
-        }
-        <br />
-        </div>
-
-        <div>
-        <br />
-        <div style={numbercustomize}>{seconds}</div>
-        {seconds <= 1 ? (
-          <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{secondword}</span>
-
-        )
-        :
-        <span style={textcustomize}>&nbsp;&nbsp;&nbsp;{secondswordplural}</span>
-        }
-        <br />
-        </div>
-        </div>
-    </div>
-   }
-    </div>;
+      </div>
+    }
+  </div>;
 };
