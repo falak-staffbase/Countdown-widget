@@ -29,7 +29,7 @@ export const configurationSchema: JSONSchema7 = {
     "dayswordplural",
     "hourswordplural",
     "secondswordplural",
-    "minuteswordplural",
+    "minuteswordplural"
   ],
   properties: {  
     dayswordplural: {

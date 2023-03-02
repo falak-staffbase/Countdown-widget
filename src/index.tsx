@@ -76,7 +76,7 @@ const blockDefinition: BlockDefinition = {
     configurationSchema: configurationSchema,
     uiSchema: uiSchema,
     label: 'Countdown Widget',
-    iconUrl: 'https://cc-scripts.staffbase.com/countdown-widget/staffbase.countdown-widget.js'
+    iconUrl: 'https://cc-scripts.staffbase.com/countdown-widget/timer1.png'
 };
 
 /**

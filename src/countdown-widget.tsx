@@ -14,6 +14,7 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { ColorTheme, WidgetApi } from "widget-sdk";
 import CSS from "csstype";
+
 /**
  * React Component
  */
@@ -22,7 +23,7 @@ export interface CountdownWidgetProps {
   expiredmessage: string;
   boxescolortext: string;
   boxescolorbg: string;
-  showbackground: string;
+  showbackground: boolean;
   dayword: string;
   hourword: string;
   minuteword: string;
@@ -45,6 +46,12 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [theme, setTheme] = React.useState<ColorTheme | null>(null);
+  const [showBackgroundValue, setShowBackground] = useState(showbackground || false );
+
+
+  const handleChange = () => {
+    setShowBackground((prevState) => !prevState);
+  };
 
   // Timer function to count down
   const timeCountdown = () => {
@@ -62,9 +69,9 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
 
   useEffect(() => {
     timeCountdown()
-    setTheme(widgetApi.getLegacyAppTheme());
+    setTheme(widgetApi.getLegacyAppTheme())
 
-  });
+  },[widgetApi]);
 
   const textcustomize: CSS.Properties = {
     // textAlign: "center",
@@ -88,13 +95,14 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     paddingBottom: "20px",
     display: "inline-block",
   };
-
+  console.log('showbackground:', showbackground);
+  console.log('showBackgroundValue:', boxescolorbg);
   return <div className="cw-countdown-main">
     {distance < 0 ? (
       <div className="cw-countdown-expired">{expiredmessage}</div>)
       :
       <div style={parentcustomize}>
-        <div style={showbackground ? { backgroundColor: boxescolorbg } : { backgroundColor: theme?.bgColor, display: "inline-block" }}>
+        <div style={showbackground ? { backgroundColor: boxescolorbg } : { backgroundColor: theme?.bgColor, display: "inline-block" }} onClick={handleChange}>
 
           <div>
             <br />
@@ -131,7 +139,7 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
             </span>
             <br />
           </div>
-        </div>
+          </div>
       </div>
     }
   </div>;
