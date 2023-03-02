@@ -51,11 +51,7 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
 
   useEffect(() => {
     setShowBackground(showbackground);
-  }, [showbackground]);
-
-  const handleButtonClick = React.useCallback(() => { 
-    setShowBackground(!showbackground); 
-}, [showbackground]);
+    }, [showbackground]);
 
   // Timer function to count down
   const timeCountdown = () => {
@@ -98,21 +94,14 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     // textAlign: "center",s
     paddingBottom: "20px",
     display: "inline-block",
+    background:showbackgroundValue? boxescolorbg: theme?.bgColor
   };
-
-  console.log("showbackground",showbackground)
-  console.log("backgroundColor",boxescolorbg)
-  console.log("backgroundColorapp",theme?.bgColor)
-  console.log("showbackgroundValue",showbackgroundValue)
-
 
   return <div className="cw-countdown-main">
     {distance < 0 ? (
       <div className="cw-countdown-expired">{expiredmessage}</div>)
       :
       <div style={parentcustomize}>
-        <div  style={showbackgroundValue ? { backgroundColor: boxescolorbg } : { backgroundColor: theme?.bgColor }} onClick={handleButtonClick} >
-
           <div>
             <br />
             <div className="cw-countdown-number cw-countdown-days" style={numbercustomize}>{days}</div>
@@ -147,7 +136,6 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
               {seconds <= 1 ? secondword : secondswordplural}
             </span>
             <br />
-          </div>
           </div>
       </div>
     }
