@@ -67,11 +67,11 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
   }
 
+  setTimeout(()=>{timeCountdown()},1000)
   useEffect(() => {
-    timeCountdown()
     setTheme(widgetApi.getLegacyAppTheme())
 
-  },[widgetApi]);
+  },[]);
 
   const textcustomize: CSS.Properties = {
     // textAlign: "center",
@@ -95,8 +95,7 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     paddingBottom: "20px",
     display: "inline-block",
   };
-  console.log('showbackground:', showbackground);
-  console.log('showBackgroundValue:', boxescolorbg);
+
   return <div className="cw-countdown-main">
     {distance < 0 ? (
       <div className="cw-countdown-expired">{expiredmessage}</div>)
