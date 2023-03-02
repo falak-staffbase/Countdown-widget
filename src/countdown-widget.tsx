@@ -46,12 +46,16 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [theme, setTheme] = React.useState<ColorTheme | null>(null);
-  const [showBackgroundValue, setShowBackground] = useState(showbackground || false );
+  const [showbackgroundValue, setShowBackground] = useState(showbackground);
 
 
-  const handleChange = () => {
-    setShowBackground((prevState) => !prevState);
-  };
+  useEffect(() => {
+    setShowBackground(showbackground);
+  }, [showbackground]);
+
+  const handleButtonClick = React.useCallback(() => { 
+    setShowBackground(!showbackground); 
+}, [showbackground]);
 
   // Timer function to count down
   const timeCountdown = () => {
@@ -96,12 +100,18 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     display: "inline-block",
   };
 
+  console.log("showbackground",showbackground)
+  console.log("backgroundColor",boxescolorbg)
+  console.log("backgroundColorapp",theme?.bgColor)
+  console.log("showbackgroundValue",showbackgroundValue)
+
+
   return <div className="cw-countdown-main">
     {distance < 0 ? (
       <div className="cw-countdown-expired">{expiredmessage}</div>)
       :
       <div style={parentcustomize}>
-        <div style={showbackground ? { backgroundColor: boxescolorbg } : { backgroundColor: theme?.bgColor, display: "inline-block" }} onClick={handleChange}>
+        <div  style={showbackgroundValue ? { backgroundColor: boxescolorbg } : { backgroundColor: theme?.bgColor }} onClick={handleButtonClick} >
 
           <div>
             <br />
