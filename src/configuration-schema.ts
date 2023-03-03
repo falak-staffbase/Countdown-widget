@@ -95,7 +95,6 @@ export const configurationSchema: JSONSchema7 = {
     showbackground: {
       type: "boolean",
       title: "Show Background Color as App Theme",
-      enum:[true,false]
     },
   },
 };

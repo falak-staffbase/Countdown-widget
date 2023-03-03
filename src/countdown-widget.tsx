@@ -46,7 +46,7 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [theme, setTheme] = React.useState<ColorTheme | null>(null);
-  const [showbackgroundValue, setShowBackground] = React.useState(showbackground);
+  const [showbackgroundValue, setShowBackground] = React.useState(false);
 
 
   useEffect(() => {
@@ -96,6 +96,14 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     display: "inline-block",
     background:showbackgroundValue? boxescolorbg: theme?.bgColor
   };
+
+  console.log("showbackground",showbackground)
+  console.log("backgroundColor",boxescolorbg)
+  console.log("backgroundColorapp",theme?.bgColor)
+  console.log("showbackgroundValue",showbackgroundValue)
+  console.log("setShowBackground",setShowBackground)
+  console.log("theme",theme)
+  console.log("boxescolorbg",boxescolorbg)
 
   return <div className="cw-countdown-main">
     {distance < 0 ? (
