@@ -50,7 +50,8 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
 
 
   useEffect(() => {
-    setShowBackground(prevShowBackground => !prevShowBackground);
+    console.log("to test: if this use effect hitting on live")
+    setShowBackground((prevState) => !prevState);
     }, [showbackground]);
 
   // Timer function to count down

@@ -97,6 +97,25 @@ export const configurationSchema: JSONSchema7 = {
       title: "Show Background Color as App Theme",
     },
   },
+  dependencies: {
+    boxescolorbg: {
+      if: {
+        properties: {
+          showbackground: {const: false}
+        }
+      },
+      then: {
+        properties: {
+          boxescolorbg: {
+            type: "string",
+            title: "Background Color",
+            default: "#FFFFFF"
+          }
+        },
+        required: ["boxescolorbg"]
+      }
+    }
+  }
 };
 
 /**
