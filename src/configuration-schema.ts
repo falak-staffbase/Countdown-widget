@@ -90,11 +90,12 @@ export const configurationSchema: JSONSchema7 = {
     boxescolorbg: {
       type: "string",
       title: "Background Color",
-      default: "#FFFFFF"
+      default: "#FFFFFF",
     },
     showbackground: {
       type: "boolean",
-      title: "Show Background"
+      title: "Show Background Color as App Theme",
+      enum:[true,false]
     },
   },
 };
@@ -143,6 +144,6 @@ export const uiSchema: UiSchema = {
     "ui:help": "Choose a color for the background of the countdown boxes. Default: #FBC91E"
   },
   showbackground: {
-    "ui:help": "Do you want to display the customized background color?"
+    "ui:help": "Do you want to display the Background Color as App them Color?"
   },
 };

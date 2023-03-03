@@ -46,11 +46,11 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
   const [minutes, setMinutes] = useState<number>(0);
   const [seconds, setSeconds] = useState<number>(0);
   const [theme, setTheme] = React.useState<ColorTheme | null>(null);
-  const [showbackgroundValue, setShowBackground] = useState(showbackground);
+  const [showbackgroundValue, setShowBackground] = React.useState(showbackground);
 
 
   useEffect(() => {
-    setShowBackground(showbackground);
+    setShowBackground(prevShowBackground => !prevShowBackground);
     }, [showbackground]);
 
   // Timer function to count down
@@ -101,7 +101,7 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     {distance < 0 ? (
       <div className="cw-countdown-expired">{expiredmessage}</div>)
       :
-      <div style={parentcustomize}>
+      <div style={parentcustomize} >
           <div>
             <br />
             <div className="cw-countdown-number cw-countdown-days" style={numbercustomize}>{days}</div>
