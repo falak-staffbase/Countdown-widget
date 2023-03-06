@@ -76,26 +76,26 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
 
   const textcustomize: CSS.Properties = {
     // textAlign: "center",
-    paddingTop: "5px",
     color: boxescolortext,
     fontSize: "16px",
     display: "inline-block",
-    paddingRight: "20px",
+    textAlign:"center",
+    width: "23.33%",
   };
 
   const numbercustomize: CSS.Properties = {
     // textAlign: "center",
-    paddingLeft: "15px",
     color: boxescolortext,
     display: "inline-block",
-    width: "70px"
+    width: "23.33%",
+    textAlign:"center"
   };
 
   const parentcustomize: CSS.Properties = {
     // textAlign: "center",s
-    paddingBottom: "20px",
+    padding: "20px",
     display: "block",
-    width: "100px",
+    width: "100%",
     background:showbackgroundValue? boxescolorbg: theme?.bgColor
   };
 
@@ -123,7 +123,7 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
             <br />
           </div>
 
-          <div className="cw-countdown-number-text">
+          <div className="cw-countdown-text">
             <br />
             <span style={textcustomize}>
               {days <= 1 ? dayword : dayswordplural}
