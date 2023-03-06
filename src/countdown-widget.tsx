@@ -93,15 +93,15 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
 
   const parentcustomize: CSS.Properties = {
     // textAlign: "center",s
-    padding: "20px",
+    padding: "20px 20px 35px 20px",
     display: "block",
     width: "100%",
-    background:showbackgroundValue? boxescolorbg: theme?.bgColor
   };
 
   const maincustomize: CSS.Properties = {
     // textAlign: "center",s
-    textAlign:"center"
+    textAlign:"center",
+    background:showbackgroundValue? boxescolorbg: theme?.bgColor
   };
 
 //  <div style={parentcustomize} ></div> 
