@@ -94,7 +94,8 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
   const parentcustomize: CSS.Properties = {
     // textAlign: "center",s
     paddingBottom: "20px",
-    display: "inline-block",
+    display: "block",
+    width: "100px",
     background:showbackgroundValue? boxescolorbg: theme?.bgColor
   };
 
@@ -113,27 +114,27 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
       <div className="cw-countdown-expired">{expiredmessage}</div>)
       :
       <div className="countdown-master"  style={parentcustomize} >
-          <div>
+          <div className="cw-countdown-number" >
             <br />
-            <span className="cw-countdown-number cw-countdown-days" style={numbercustomize}>{days}</span>
-            <span className="cw-countdown-number cw-countdown-hours" style={numbercustomize}>{hours}</span>
-            <span className="cw-countdown-number cw-countdown-minutes" style={numbercustomize}>{minutes}</span>
-            <span className="cw-countdown-number cw-countdown-seconds" style={numbercustomize}>{seconds}</span>
+            <span  style={numbercustomize}>{days}</span>
+            <span  style={numbercustomize}>{hours}</span>
+            <span  style={numbercustomize}>{minutes}</span>
+            <span style={numbercustomize}>{seconds}</span>
             <br />
           </div>
 
-          <div>
+          <div className="cw-countdown-number-text">
             <br />
-            <span className="cw-countdown-number-text cw-countdown-days-text" style={textcustomize}>
+            <span style={textcustomize}>
               {days <= 1 ? dayword : dayswordplural}
             </span>
-            <span className="cw-countdown-number-text cw-countdown-hours-text" style={textcustomize}>
+            <span style={textcustomize}>
               {hours <= 1 ? hourword : hourswordplural}
             </span>
-            <span className="cw-countdown-number-text cw-countdown-minutes-text" style={textcustomize}>
+            <span style={textcustomize}>
               {minutes <= 1 ? minuteword : minuteswordplural}
             </span>
-            <span className="cw-countdown-number-text cw-countdown-seconds-text" style={textcustomize}>
+            <span style={textcustomize}>
               {seconds <= 1 ? secondword : secondswordplural}
             </span>
             <br />
