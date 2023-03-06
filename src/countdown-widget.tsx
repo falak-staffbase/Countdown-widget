@@ -113,34 +113,24 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
       <div style={parentcustomize} >
           <div>
             <br />
-            <div className="cw-countdown-number cw-countdown-days" style={numbercustomize}>{days}</div>
+            <span className="cw-countdown-number cw-countdown-days" style={numbercustomize}>{days}</span>
+            <span className="cw-countdown-number cw-countdown-hours" style={numbercustomize}>{hours}</span>
+            <span className="cw-countdown-number cw-countdown-minutes" style={numbercustomize}>{minutes}</span>
+            <div className="cw-countdown-number cw-countdown-seconds" style={numbercustomize}>{seconds}</div>
+            <br />
+          </div>
+
+          <div>
+            <br />
             <span className="cw-countdown-number-text cw-countdown-days-text" style={textcustomize}>
               {days <= 1 ? dayword : dayswordplural}
             </span>
-            <br />
-          </div>
-
-          <div>
-            <br />
-            <div className="cw-countdown-number cw-countdown-hours" style={numbercustomize}>{hours}</div>
             <span className="cw-countdown-number-text cw-countdown-hours-text" style={textcustomize}>
               {hours <= 1 ? hourword : hourswordplural}
             </span>
-            <br />
-          </div>
-
-          <div>
-            <br />
-            <div className="cw-countdown-number cw-countdown-minutes" style={numbercustomize}>{minutes}</div>
             <span className="cw-countdown-number-text cw-countdown-minutes-text" style={textcustomize}>
               {minutes <= 1 ? minuteword : minuteswordplural}
             </span>
-            <br />
-          </div>
-
-          <div>
-            <br />
-            <div className="cw-countdown-number cw-countdown-seconds" style={numbercustomize}>{seconds}</div>
             <span className="cw-countdown-number-text cw-countdown-seconds-text" style={textcustomize}>
               {seconds <= 1 ? secondword : secondswordplural}
             </span>
