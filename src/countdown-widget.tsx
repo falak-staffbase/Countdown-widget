@@ -99,6 +99,11 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     background:showbackgroundValue? boxescolorbg: theme?.bgColor
   };
 
+  const maincustomize: CSS.Properties = {
+    // textAlign: "center",s
+    textAlign:"center"
+  };
+
 //  <div style={parentcustomize} ></div> 
 
   console.log("showbackground",showbackground)
@@ -109,7 +114,7 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
   console.log("theme",theme)
   console.log("boxescolorbg",boxescolorbg)
 
-  return <div className="cw-countdown-main">
+  return <div className="cw-countdown-main" style={maincustomize}>
     {distance < 0 ? (
       <div className="cw-countdown-expired">{expiredmessage}</div>)
       :
