@@ -98,6 +98,8 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     background:showbackgroundValue? boxescolorbg: theme?.bgColor
   };
 
+//  <div style={parentcustomize} ></div> 
+
   console.log("showbackground",showbackground)
   console.log("backgroundColor",boxescolorbg)
   console.log("backgroundColorapp",theme?.bgColor)
@@ -110,13 +112,13 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
     {distance < 0 ? (
       <div className="cw-countdown-expired">{expiredmessage}</div>)
       :
-      <div style={parentcustomize} >
+      <div className="countdown-master"  style={parentcustomize} >
           <div>
             <br />
             <span className="cw-countdown-number cw-countdown-days" style={numbercustomize}>{days}</span>
             <span className="cw-countdown-number cw-countdown-hours" style={numbercustomize}>{hours}</span>
             <span className="cw-countdown-number cw-countdown-minutes" style={numbercustomize}>{minutes}</span>
-            <div className="cw-countdown-number cw-countdown-seconds" style={numbercustomize}>{seconds}</div>
+            <span className="cw-countdown-number cw-countdown-seconds" style={numbercustomize}>{seconds}</span>
             <br />
           </div>
 
@@ -136,6 +138,7 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
             </span>
             <br />
           </div>
+
       </div>
     }
   </div>;
