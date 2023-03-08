@@ -106,13 +106,6 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
 
 //  background:showbackgroundValue? boxescolorbg: theme?.bgColor
 
-  console.log("showbackground",showbackground)
-  console.log("backgroundColor",boxescolorbg)
-  console.log("backgroundColorapp",theme?.bgColor)
-  console.log("showbackgroundValue",showbackgroundValue)
-  console.log("setShowBackground",setShowBackground)
-  console.log("theme",theme)
-  console.log("boxescolorbg",boxescolorbg)
 
   return <div className="cw-countdown-main" style={maincustomize}>
     {distance < 0 ? (
