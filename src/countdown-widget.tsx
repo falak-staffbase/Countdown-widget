@@ -101,10 +101,10 @@ export const CountdownWidget = ({ dayword, hourword, minuteword, secondword, day
   const maincustomize: CSS.Properties = {
     // textAlign: "center",s
     textAlign:"center",
-    background:showbackgroundValue? boxescolorbg: theme?.bgColor
+    background:boxescolorbg
   };
 
-//  <div style={parentcustomize} ></div> 
+//  background:showbackgroundValue? boxescolorbg: theme?.bgColor
 
   console.log("showbackground",showbackground)
   console.log("backgroundColor",boxescolorbg)
